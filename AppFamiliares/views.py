@@ -13,11 +13,11 @@ def get_familiares(request):
     # return HttpResponse("Hola")
     # return render(request, "Familiares/familiares.html")
     familiares = []
-    familiar_1 = Familiar(nombre="Marcelo", apellido="Loray",
+    familiar_1 = Familiar(nombre="Marcelo", apellido="Loray", edad=50,
                           fecha_nacimiento="1998-22-02")
-    familiar_2 = Familiar(nombre="Gabriela", apellido="Mendiburu",
+    familiar_2 = Familiar(nombre="Gabriela", apellido="Mendiburu", edad=50,
                           fecha_nacimiento="1998-22-02")
-    familiar_3 = Familiar(nombre="Camila", apellido="Loray",
+    familiar_3 = Familiar(nombre="Camila", apellido="Loray", edad=200,
                           fecha_nacimiento="1998-22-02")
     familiar_1.save()
     familiar_2.save()
