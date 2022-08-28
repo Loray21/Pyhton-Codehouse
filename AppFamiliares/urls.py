@@ -2,5 +2,5 @@ from django.urls import path
 from AppFamiliares.views import *
 
 urlpatterns = [
-    path('', get_familiares),
+    path('', get_familiares, name="inicio"),
 ]

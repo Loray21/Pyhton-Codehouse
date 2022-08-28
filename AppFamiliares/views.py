@@ -27,4 +27,4 @@ def get_familiares(request):
     familiares.append(familiar_2)
     familiares.append(familiar_3)
     diccionario = {"familiares": familiares}
-    return render(request, 'AppFamiliares/profesores.html', diccionario)
+    return render(request, 'AppFamiliares/index.html', diccionario)
