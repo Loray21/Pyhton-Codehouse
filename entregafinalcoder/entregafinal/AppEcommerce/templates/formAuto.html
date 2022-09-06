@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Agregue un auto</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<div class="container px-4 px-lg-5 mt-5">
+    <h5>Agregue un Auto</h5>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+        <form action="{% url 'addAuto' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlFile1">nombre</label>
+                <input type="text" class="form-control-file" id="nombre" name="nombre">
+                <label for="exampleFormControlFile1">precio</label>
+                <input type="numer" class="form-control-file" id="precio" name="precio">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen">
+                <label for="exampleFormControlFile1">Marca</label>
+                <input type="text" class="form-control-file" id="marca" name="marca">
+                <label for="exampleFormControlFile1">Modelo</label>
+                <input type="text" class="form-control-file" id="modelo" name="modelo">
+                <label for="exampleFormControlFile1">Color</label>
+                <input type="text" class="form-control-file" id="color" name="color">
+                <label for="exampleFormControlFile1">Año fabricacion</label>
+                <input type="number" class="form-control-file" id="anio" name="anio">
+                <label for="exampleFormControlFile1">Kilometraje</label>
+                <input type="number" class="form-control-file" id="km" name="km">
+
+
+            </div>
+
+    </div>
+    <input type="submit" value="Enviar">
+
+</div>
+
+{% endblock %}

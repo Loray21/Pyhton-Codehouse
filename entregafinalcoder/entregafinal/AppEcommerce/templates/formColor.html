@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Agregue un color</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<div class="container px-4 px-lg-5 mt-5">
+    <h5>Agregue un Color</h5>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+        <form action="{% url 'addColor' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Color</label>
+                <input type="text" class="form-control-file" id="color" name="color">
+
+
+            </div>
+
+    </div>
+    <input type="submit" value="Enviar">
+
+</div>
+
+{% endblock %}
