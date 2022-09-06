@@ -13,18 +13,15 @@ Desde su maquina local clone el repositorio del proyecto con el siguiente comand
 
 Pre-requisitos 📋
 
+```
+Python
 
--Python
+Django
 
+Pip
 
--Django
-
-
--Pip
-
-
--Git
-
+Git
+```
 Funcionalidad
 
 
