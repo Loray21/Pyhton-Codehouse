@@ -102,12 +102,13 @@ Js
 ```
 
 Patron Utilizado:
+```
 MVT(Model-View-Template)
-
+```
 Versionado 📌
-
+```
 Se Utilizo Git para el versionado del codigo
-
+```
 Autores ✒️
 
 
