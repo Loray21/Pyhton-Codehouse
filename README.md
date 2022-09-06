@@ -1,7 +1,7 @@
-TUAUTOYA
+**TUAUTOYA**
 
 
-TUAUTOYA es una pagina Ecommerce de venta de autos, con el fin de ademas de poder vender en un lugar fisico , se implementen las ventas online
+**TUAUTOYA** es una pagina Ecommerce de venta de autos, con el fin de ademas de poder vender en un lugar fisico , se implementen las ventas online
 Comenzando 🚀
 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
 
@@ -92,16 +92,14 @@ No se muestran Autos
 
 
 Construido con 🛠️
-
-
-
+```
 Python
 Html
 Boostrap
 Django
 Css
 Js
-
+```
 
 Patron Utilizado:
 MVT(Model-View-Template)
