@@ -90,7 +90,7 @@ No se muestran Autos
 
 Construido con 🛠️
 ```
-[Python](https://www.python.org/)
+Python
 Html
 Boostrap
 Django
