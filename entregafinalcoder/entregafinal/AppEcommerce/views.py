@@ -1,6 +1,6 @@
 from datetime import date
 from django.shortcuts import render
-from AppEcommerce.modelsauto import *
+from AppEcommerce.models import *
 from django.http import HttpResponse
 
 

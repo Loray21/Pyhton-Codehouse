@@ -12,7 +12,7 @@ class Color(models.Model):
 class Auto(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.FloatField()
-    imagen = models.ImageField(upload_to='productos/', null=True)
+    imagen = models.ImageField(upload_to='autos/', null=True)
     marca = models.CharField(max_length=50)
     color = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
