@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>TUAUTOYA</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -49,6 +49,7 @@
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                 </form>
+
             </div>
         </div>
     </nav>
@@ -63,14 +64,11 @@
     </header>
     <!-- Section-->
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
-            <form action="{% url 'buscarNombre' %}" method="GET">
-
-                <input type="text" name="nombre" id="nombre">
-
-                <input type="submit" value="buscar" placeholder="coloque el nombre">
-
-
+        <div class="row gx-4 gx-lg-5">
+            <form class="d-flex" action="{% url 'buscarNombre' %}" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Buscar por nombre" aria-label="Search"
+                    name="nombre" id="nombre">
+                <button class="btn btn-outline-success" value="buscar" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -108,6 +106,8 @@
                 {% endfor %}
 
             </div>
+
+
         </div>
         <div>
             {% block contenido_que_cambia %}
