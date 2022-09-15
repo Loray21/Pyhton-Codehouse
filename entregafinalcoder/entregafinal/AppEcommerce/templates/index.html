@@ -33,7 +33,7 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><a class="dropdown-item" href="{% url 'listarAutos' %}">todos los autos</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
@@ -80,9 +80,11 @@
                     <div class="card h-100">
                         <!-- Product image-->
                         {% if auto.imagen %}
+
+
                         <img class="card-img-top" src="{{auto.imagen.url}}" alt="..." />
                         {% endif %}
-
+                        <a title="auto" href="{% url 'auto_detalle' auto.id %}"> Ver mas</a>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -98,11 +100,21 @@
                                 <!-- Product price-->
                                 $ {{auto.precio}}
                             </div>
+
                         </div>
                         <!-- Product actions-->
 
+
                     </div>
+                    <div>
+                        <a class="btn btn-danger btn-sm" href="{% url 'auto_borrar' auto.id %}">ELIMINAR</a>
+                        <a class="btn btn-success btn-sm" href="{% url 'auto_editar' auto.id %}">EDITAR</a>
+                    </div>
+
+
                 </div>
+
+
                 {% endfor %}
 
             </div>

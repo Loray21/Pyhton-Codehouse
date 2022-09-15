@@ -1,7 +1,11 @@
 from datetime import date
+from distutils.debug import DEBUG
 from django.shortcuts import render
 from AppEcommerce.models import *
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+# a la url que vuelvo
+from django.urls import reverse_lazy
 
 
 def inicio(request):
@@ -76,3 +80,25 @@ def buscarNombre(request):
 
 
 # ........................
+class AutoUpdate(UpdateView):
+    model = Auto
+    success_url = reverse_lazy('listarAutos')
+    fields = ['nombre', 'precio', 'imagen', 'marca',
+              'color', 'modelo', 'anio', 'km']
+
+
+class AutoCreate(CreateView):
+    model = Auto
+    success_url = reverse_lazy('listarAutos')
+    fields = ['nombre', 'precio', 'imagen' 'marca',
+              'color', 'modelo', 'anio', 'km']
+
+
+class AutoDelete(DeleteView):
+    model = Auto
+    success_url = reverse_lazy('listarAutos')
+
+
+class AutoDetalle(DetailView):
+    model = Auto
+    template_name = "AppEcommerce/auto_detalle.html"

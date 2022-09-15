@@ -26,4 +26,17 @@ urlpatterns = [
     path("addMarca/", addMarca, name="addMarca"),
     path("", listarAutos, name="listarAutos"),
     path("buscarNombre/", buscarNombre, name="buscarNombre"),
+
+    # vistas basadas en clases
+    path('auto/editar/<pk>', AutoUpdate.as_view(),
+         name='auto_editar'),
+    path('auto/crear/', AutoCreate.as_view(),
+         name='auto_crear'),
+    path('auto/borrar/<pk>', AutoDelete.as_view(),
+         name='auto_borrar'),
+    path('autoDetalle/<pk>', AutoDetalle.as_view(),
+         name='auto_detalle'),
+
+
+
 ]

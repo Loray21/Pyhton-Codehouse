@@ -19,5 +19,7 @@ class Auto(models.Model):
     anio = models.IntegerField()
     km = models.FloatField()
 
+    def __str__(self) -> str:
+        return self.nombre + " " + self.modelo + " " + str(self.anio)
 
 # Create your models here.
