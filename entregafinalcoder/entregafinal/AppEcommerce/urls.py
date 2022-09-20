@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from AppEcommerce.views import *
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     ##path("inicio/", inicio),
     path("FormAuto/", render_form),
     path("FormColor/", render_color),
     path("FormMarca/", render_marca),
-    path("addAuto/", addAuto, name="addAuto"),
     path("addColor/", addColor, name="addColor"),
     path("addMarca/", addMarca, name="addMarca"),
     path("", listarAutos, name="listarAutos"),
@@ -36,6 +36,12 @@ urlpatterns = [
          name='auto_borrar'),
     path('autoDetalle/<pk>', AutoDetalle.as_view(),
          name='auto_detalle'),
+
+    # login
+    path('login/', login_request, name='login'),
+    path('register/', register, name='register'),
+    path('logout/', LogoutView.as_view(template_name='login.html'), name='logout'),
+    path('editarPerfil/', editarPerfil, name='editarPerfil')
 
 
 
