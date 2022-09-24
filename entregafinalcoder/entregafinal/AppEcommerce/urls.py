@@ -22,10 +22,11 @@ urlpatterns = [
     path("FormAuto/", render_form),
     path("FormColor/", render_color),
     path("FormMarca/", render_marca),
-    path("addColor/", addColor, name="addColor"),
-    path("addMarca/", addMarca, name="addMarca"),
+    path("addColor/", addColor, name="color_crear"),
+    path("addMarca/", addMarca, name="marca_crear"),
     path("", listarAutos, name="listarAutos"),
     path("buscarNombre/", buscarNombre, name="buscarNombre"),
+    path("nosotros/", nosotros, name="nosotros"),
 
     # vistas basadas en clases
     path('auto/editar/<pk>', AutoUpdate.as_view(),
@@ -40,7 +41,7 @@ urlpatterns = [
     # login
     path('login/', login_request, name='login'),
     path('register/', register, name='register'),
-    path('logout/', LogoutView.as_view(template_name='login.html'), name='logout'),
+    path('logout/', LogoutView.as_view(template_name='login/login.html'), name='logout'),
     path('editarPerfil/', editarPerfil, name='editarPerfil')
 
 

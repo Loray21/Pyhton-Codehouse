@@ -20,6 +20,10 @@ def inicio(request):
 # Create your views here.
 
 
+def nosotros(request):
+    return render(request, "nosotros/nosotros.html")
+
+
 def render_form(request):
     return render(request, "formAuto.html")
 
@@ -99,13 +103,13 @@ def login_request(request):
                 login(request, usuario)
                 return listarAutos(request)
             else:
-                return render(request, "login.html", {"formulario": form, 'mensaje': f'Usuario o contraseña incorrecto'})
+                return render(request, "login/login.html", {"formulario": form, 'mensaje': f'Usuario o contraseña incorrecto'})
         else:
-            return render(request, "login.html", {"formulario": form, 'mensaje': f'Usuario o contraseña incorrecto'})
+            return render(request, "login/login.html", {"formulario": form, 'mensaje': f'Usuario o contraseña incorrecto'})
 
     else:
         form = AuthenticationForm()
-        return render(request, "login.html", {"formulario": form})
+        return render(request, "login/login.html", {"formulario": form})
 
 
 def register(request):
@@ -116,12 +120,12 @@ def register(request):
             username = form.cleaned_data.get('username')
             # guardo la data del user en la bbdd
             form.save()
-            return render(request, "login.html", {"mensaje": f"el usuario {username} se creo correctamente"})
+            return render(request, "login/login.html", {"mensaje": f"el usuario {username} se creo correctamente"})
         else:
-            return render(request, "register.html", {"formulario": form, "mensaje": "DATOS INVALIDOS"})
+            return render(request, "register/register.html", {"formulario": form, "mensaje": "DATOS INVALIDOS"})
     else:
         form = UserRegisterForm()
-        return render(request, "register.html", {"formulario": form})
+        return render(request, "register/register.html", {"formulario": form})
 
 
 @login_required

@@ -1,7 +1,8 @@
-from dataclasses import field
+from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from AppEcommerce.models import *
 
 
 class UserRegisterForm(UserCreationForm):
@@ -33,3 +34,20 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['email', 'password1', 'password2', 'first_name', 'last_name']
         help_texts = {k: "" for k in fields}
+
+
+class autoForm(ModelForm):
+    class Meta:
+        model = Auto
+        fields = [
+            'nombre',
+            'precio',
+            'imagen',
+            'marca',
+            'color',
+            'modelo',
+            'anio',
+            'km'
+
+
+        ]
