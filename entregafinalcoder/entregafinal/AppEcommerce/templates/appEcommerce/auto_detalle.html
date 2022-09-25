@@ -1,26 +1,59 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% load static %}
-
-
-{% block titulo %}
-<h1 class="mb-5">Agregue un auto</h1>
-{% endblock %}
 
 {% block contenido_que_cambia %}
 <div class="container">
     <div class="row">
-        <div class="col-8">
-            Uno
+        <div class="col-8 ">
+            <img src="{{auto.imagen.url}}" class="img-fluid" alt="Responsive image">
         </div>
-        <div class="col-4">
-            Dos
+        <div class="col-4 border rounded">
+            <h2>{{auto.nombre}} • {{auto.modelo}} • {{auto.anio}}</h2>
+            <h3><span>$</span>{{auto.precio}}</h3>
+            <button type="button" class="btn btn-success">Preguntar</button>
         </div>
     </div>
 </div>
-<div class="container ">
-    <img src="{{auto.imagen.url}}" class="img-fluid" alt="Responsive image">
+<div class="container-fluid">
+    <div class="abs-center">
+        <h1>Caracteristicas</h1>
+    </div>
 </div>
+<div class="container">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="container-fluid">
+    <div class="col-12">
+        <h2>Preguntale al Vendedor</h2>
+        <form action="">
+            <input type="text" placeholder="Escriba su pregunta">
+            <button type="submit" class="btn btn-success">Preguntar</button>
+        </form>
+    </div>
+
+</div>
+
 
 
 

@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from AppEcommerce.forms import *
 
 # a la url que vuelvo
 from django.urls import reverse_lazy
@@ -172,5 +173,6 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
 
 
 class AutoDetalle(DetailView):
+    form = messagesForm()
     model = Auto
     template_name = "AppEcommerce/auto_detalle.html"
