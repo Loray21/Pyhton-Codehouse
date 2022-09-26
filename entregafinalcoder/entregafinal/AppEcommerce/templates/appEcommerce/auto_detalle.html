@@ -46,7 +46,7 @@
 <div class="container-fluid">
     <div class="col-12">
         <h2>Preguntale al Vendedor</h2>
-        <form action="">
+        <form action=" {% url 'mensaje_crear' user.id %}">
             <input type="text" placeholder="Escriba su pregunta">
             <button type="submit" class="btn btn-success">Preguntar</button>
         </form>
