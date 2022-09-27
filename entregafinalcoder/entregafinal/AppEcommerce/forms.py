@@ -51,8 +51,3 @@ class autoForm(ModelForm):
 
 
         ]
-
-
-class messagesForm(forms.Form):
-    message = forms.CharField()
-    user = forms.CharField()

@@ -14,6 +14,7 @@ from AppEcommerce.forms import *
 # a la url que vuelvo
 from django.urls import reverse_lazy
 from AppEcommerce.forms import UserRegisterForm, UserEditForm
+from AppMensajeria.views import crearMensaje
 
 
 def inicio(request):
@@ -173,6 +174,9 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
 
 
 class AutoDetalle(DetailView):
-    form = messagesForm()
     model = Auto
-    template_name = "AppEcommerce/auto_detalle.html"
+    ##template_name = "AppEcommerce/auto_detalle.html"
+
+    def get(request):
+        # <view logic>
+        return crearMensaje(request)

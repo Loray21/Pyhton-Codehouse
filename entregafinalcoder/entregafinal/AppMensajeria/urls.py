@@ -6,7 +6,7 @@ urlpatterns = [
     # vistas basadas en clases
     path('mensaje/editar/<pk>', MensajeUpdate.as_view(),
          name='mensaje_editar'),
-    path('mensaje/crear/<id>', MensajeCreate.as_view(),
+    path('mensaje/crear/', MensajeCreate.as_view(),
          name='mensaje_crear'),
     path('mensaje/borrar/<pk>', MensajeDelete.as_view(),
          name='mensaje_borrar')
