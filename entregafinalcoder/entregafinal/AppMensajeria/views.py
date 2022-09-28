@@ -14,21 +14,15 @@ class MensajeCreate(CreateView):
     fields = ['mensaje', 'fecha_envio']
 
 
-def crearMensaje(request, id):
+def crearMensaje(request):
+    user = request.user
     if (request.method == "POST"):
-        form = CreateMessageForm(request.POST)
-        if form.is_valid():
-            message = mensajes(
-                message=form.cleaned_data['mensaje'], user_id=request.user.id, fecha_envio=form.cleaned_data['fecha_envio'])
-            message.save()
-            reverse_lazy('auto_detalle')
-        else:
-            reverse_lazy('auto_detalle', {
-                         "mensaje": 'No se pudo enviar el mensaje'})
+        message = mensajes(
+            mensaje=request.POST.get("mensaje"), user_id=user, fecha_envio=datetime.datetime.now())
+        message.save()
+        return (request, 'auto_detalle.html', {"usuario": user})
     else:
-        form = CreateMessageForm
-        reverse_lazy('auto_detalle', {
-            "form": form})
+        return render(request, 'auto_detalle.html', {"mensaje": 'No se pudo enviar el mensaje'})
 
 
 class MensajeUpdate(UpdateView):

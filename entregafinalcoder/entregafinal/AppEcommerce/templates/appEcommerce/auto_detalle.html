@@ -47,9 +47,7 @@
     <div class="col-12">
         <h2>Preguntale al Vendedor</h2>
         <form action="{% url 'mensaje_crear' %}" method="POST">{% csrf_token %}
-            <input type="text" name="message" placeholder="Escriba su pregunta">
-            <input type="text" name="user_id" placeholder="Escriba su pregunta">
-            <input type="DATE" name="fecha_envio" placeholder="Escriba su pregunta">
+            <input type="text" name="mensaje" placeholder="Escriba su pregunta">
             <button type="submit" class="btn btn-success">Preguntar</button>
         </form>
     </div>
