@@ -11,7 +11,9 @@
         <div class="col-4 border rounded">
             <h2>{{auto.nombre}} • {{auto.modelo}} • {{auto.anio}}</h2>
             <h3><span>$</span>{{auto.precio}}</h3>
-            <button type="button" class="btn btn-success">Preguntar</button>
+            <a href=" {% url 'render_mensajes' auto.user %}"><button type="button" class="btn btn-success">
+                    Enviar
+                    Mensaje</button></a>
         </div>
     </div>
 </div>
@@ -43,21 +45,6 @@
 
 </div>
 
-<div class="container-fluid">
-    <div class="col-12">
-        <h2>Preguntale al Vendedor</h2>
-        <form action="{% url 'mensaje_crear' %}" method="POST">{% csrf_token %}
-            <input type="text" name="mensaje" placeholder="Escriba su pregunta">
-            <button type="submit" class="btn btn-success">Preguntar</button>
-        </form>
-    </div>
 
-</div>
-
-
-
-
-
-</div>
 
 {% endblock %}

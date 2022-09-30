@@ -35,7 +35,7 @@ urlpatterns = [
          name='auto_crear'),
     path('auto/borrar/<pk>', AutoDelete.as_view(),
          name='auto_borrar'),
-    path('autoDetalle/<pk>', AutoDetalle.as_view(),
+    path('autoDetalle/<id>', AutoDetalle,
          name='auto_detalle'),
 
     # login

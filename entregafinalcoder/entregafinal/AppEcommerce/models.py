@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Marca(models.Model):
@@ -26,6 +27,8 @@ class Auto(models.Model):
     modelo = models.CharField(max_length=50)
     anio = models.IntegerField()
     km = models.FloatField()
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='user_create')
 
     def __str__(self) -> str:
         return self.nombre + " " + self.modelo + " " + str(self.anio)

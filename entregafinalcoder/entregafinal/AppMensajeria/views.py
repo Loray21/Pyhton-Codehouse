@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 
 from AppMensajeria.forms import CreateMessageForm
 from AppMensajeria.models import mensajes
+from AppEcommerce.models import Auto
+from django.contrib.auth.models import User
 
 
 class MensajeCreate(CreateView):
@@ -14,15 +16,26 @@ class MensajeCreate(CreateView):
     fields = ['mensaje', 'fecha_envio']
 
 
-def crearMensaje(request):
-    user = request.user
+def listarMensajes(sender):
+    messages = mensajes.objects.filter(sender=sender)
+    return messages
+
+
+def crearMensaje(request, user):
+    userSender = request.user
+    userReceiver = User.objects.get(username=user)
     if (request.method == "POST"):
         message = mensajes(
-            mensaje=request.POST.get("mensaje"), user_id=user, fecha_envio=datetime.datetime.now())
+            mensaje=request.POST.get("mensaje"), sender=userSender, receiver=userReceiver, fecha_envio=datetime.datetime.now())
         message.save()
-        return (request, 'auto_detalle.html', {"usuario": user})
+
+        return rendermensajes(request, request.user)
     else:
-        return render(request, 'auto_detalle.html', {"mensaje": 'No se pudo enviar el mensaje'})
+        return render(request, 'appMensajeria/rendermensajes.html', {"mensaje": 'No se pudo enviar el mensaje'})
+
+
+def rendermensajes(request, user):
+    return render(request, 'appMensajeria/rendermensajes.html', {"user": user, "mensajes": listarMensajes(request.user)})
 
 
 class MensajeUpdate(UpdateView):

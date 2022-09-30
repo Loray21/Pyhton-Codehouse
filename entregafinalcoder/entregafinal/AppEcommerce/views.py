@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from AppEcommerce.forms import UserRegisterForm, UserEditForm
 from AppMensajeria.views import crearMensaje
 from AppMensajeria.models import mensajes
+from AppMensajeria.views import listarMensajes
 
 
 def inicio(request):
@@ -166,7 +167,7 @@ class AutoCreate(LoginRequiredMixin, CreateView):
     model = Auto
     success_url = reverse_lazy('listarAutos')
     fields = ['nombre', 'precio', 'imagen', 'marca',
-              'color', 'modelo', 'anio', 'km']
+              'color', 'modelo', 'anio', 'km', 'user']
 
 
 class AutoDelete(LoginRequiredMixin, DeleteView):
@@ -174,9 +175,7 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('listarAutos')
 
 
-class AutoDetalle(DetailView):
-    model = Auto
-    mensajes = mensajes.objects.all()
-    if (len(mensajes) > 0):
-        model = mensajes
-    template_name = "AppEcommerce/auto_detalle.html"
+def AutoDetalle(request, id):
+    auto = Auto.objects.get(id=id)
+    print(str(auto))
+    return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto})

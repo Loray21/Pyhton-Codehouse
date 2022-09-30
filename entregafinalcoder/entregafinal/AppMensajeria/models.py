@@ -7,6 +7,12 @@ from django.contrib.auth.models import User
 
 
 class mensajes(models.Model):
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='receiver')
     mensaje = models.CharField(max_length=120)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_envio = models.DateField(default=datetime.datetime.now())
+
+    def __str__(self) -> str:
+        return self.mensaje
