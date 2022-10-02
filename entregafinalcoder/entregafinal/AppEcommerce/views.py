@@ -20,7 +20,7 @@ from AppMensajeria.views import listarMensajes
 
 
 def inicio(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {"avatar": obtenerAvatar(request)})
 # Create your views here.
 
 
@@ -80,7 +80,7 @@ def addMarca(request):
 def listarAutos(request):
     # traeme de la base, TODOS los cursos que tengan esa comision
     autos = Auto.objects.all()
-    return render(request, "index.html", {"autos": autos})
+    return render(request, "index.html", {"autos": autos, "avatar": obtenerAvatar(request)})
 
 
 def buscarNombre(request):
@@ -162,7 +162,32 @@ def AutoDetalle(request, id):
     return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto})
 
 
-# ........................
+@login_required
+def agregarAvatar(request):
+    if request.method == "POST":
+        form = avatarForm(request.POST, request.FILES)
+        if (form.is_valid()):
+
+            avat = avatar(imagen=form.cleaned_data['imagen'], user=request.user,
+                          )
+
+            avat.save()
+            return render(request, "index.html")
+    else:
+        Form = avatarForm()
+        return render(request, "perfil/agregar_avatar.html", {"avatarForm": Form})
+        # ........................
+
+
+@login_required
+def obtenerAvatar(request):
+    avat = avatar.objects.filter(user=request.user)
+    if (len(avat) != 0):
+        print(avat[0].imagen.url)
+
+        return (avat[0].imagen.url)
+    else:
+        return "https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
 
 
 class AutoUpdate(LoginRequiredMixin, UpdateView):

@@ -33,4 +33,8 @@ class Auto(models.Model):
     def __str__(self) -> str:
         return self.nombre + " " + self.modelo + " " + str(self.anio)
 
-# Create your models here.
+
+class avatar(models.Model):
+    imagen = models.ImageField(upload_to='avatar/', null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Create your models here.

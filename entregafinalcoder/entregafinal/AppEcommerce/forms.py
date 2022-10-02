@@ -50,3 +50,7 @@ class autoForm(ModelForm):
             'modelo',
             'anio',
             'km', ]
+
+
+class avatarForm(forms.Form):
+    imagen = forms.ImageField(label="Imagen")
