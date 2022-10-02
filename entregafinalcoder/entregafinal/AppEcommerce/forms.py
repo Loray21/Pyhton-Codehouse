@@ -1,3 +1,4 @@
+from tkinter import Widget
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
@@ -6,17 +7,18 @@ from AppEcommerce.models import *
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+    username = forms.CharField(label="username")
+    email = forms.EmailField(label="email")
     password1 = forms.CharField(
         # los widget son onjs que tienen representacion en el navegadro
         label="Ingrese Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(
         # los widget son onjs que tienen representacion en el navegadro
-        label="coloque nuevamente la Contraseña", widget=forms.PasswordInput)
+        label="Repita Contraseña", widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password1']
+        fields = ['username', 'email', 'password1', 'password2']
         # saca los mensjae de ayuda
         help_texts = {k: "" for k in fields}
 
@@ -47,7 +49,4 @@ class autoForm(ModelForm):
             'color',
             'modelo',
             'anio',
-            'km'
-
-
-        ]
+            'km', ]

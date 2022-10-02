@@ -6,13 +6,15 @@ urlpatterns = [
     # vistas basadas en clases
     path('mensaje/editar/<pk>', MensajeUpdate.as_view(),
          name='mensaje_editar'),
-    path('mensaje/crear/<user>', crearMensaje,
+    path('mensaje/crear/<int:sender>/<int:receiver>/', crearMensaje,
          name='mensaje_crear'),
     path('mensaje/borrar/<pk>', MensajeDelete.as_view(),
          name='mensaje_borrar'),
-    path('rendermensajes/<user>', rendermensajes,
-         name='render_mensajes')
-
+    path('chat/<int:sender>/<int:receiver>/',
+         message_view, name='render_mensajes')
 
 
 ]
+
+"""path('rendermensajes/<user>', rendermensajes,
+         name='render_mensajes'),"""

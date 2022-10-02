@@ -88,7 +88,10 @@ def buscarNombre(request):
     if request.GET["nombre"]:
         nombre_auto = request.GET["nombre"]
         autos = Auto.objects.filter(nombre=nombre_auto)
-        return render(request, "index.html", {"autos": autos})
+        if len(autos) > 0:
+            return render(request, "index.html", {"autos": autos})
+        else:
+            return render(request, "home/notfound.html")
 
     else:
         return listarAutos(request)
@@ -124,15 +127,15 @@ def register(request):
             username = form.cleaned_data.get('username')
             # guardo la data del user en la bbdd
             form.save()
-            return render(request, "login/login.html", {"mensaje": f"el usuario {username} se creo correctamente"})
+            return render(request, "login/login.html", {"mensaje": f"Su usuario {username} se creo correctamente, Ingrese"})
         else:
-            return render(request, "register/register.html", {"formulario": form, "mensaje": "DATOS INVALIDOS"})
+            return render(request, "register/register.html", {"formulario": form, "mensaje": form.errors})
     else:
         form = UserRegisterForm()
         return render(request, "register/register.html", {"formulario": form})
 
 
-@login_required
+@ login_required
 def editarPerfil(request):
     usuario = request.user
     if request.method == "POST":
@@ -147,10 +150,16 @@ def editarPerfil(request):
             usuario.save()
             return render(request, "index.html", {"mensaje": "Perfil editado correctamente"})
         else:
-            return render(request, "editarPerfil.html", {"formulario": form, "usuario": usuario, "mensaje": "FORMULARIO INVALIDO"})
+            return render(request, "perfil/editarPerfil.html", {"formulario": form, "usuario": usuario, "mensaje": "FORMULARIO INVALIDO"})
     else:
         form = UserEditForm(instance=usuario)
-    return render(request, "editar_perfil.html", {"formulario": form, "usuario": usuario})
+    return render(request, "perfil/editar_perfil.html", {"formulario": form, "usuario": usuario})
+
+
+def AutoDetalle(request, id):
+    auto = Auto.objects.get(id=id)
+    print(str(auto))
+    return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto})
 
 
 # ........................
@@ -173,9 +182,3 @@ class AutoCreate(LoginRequiredMixin, CreateView):
 class AutoDelete(LoginRequiredMixin, DeleteView):
     model = Auto
     success_url = reverse_lazy('listarAutos')
-
-
-def AutoDetalle(request, id):
-    auto = Auto.objects.get(id=id)
-    print(str(auto))
-    return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto})
