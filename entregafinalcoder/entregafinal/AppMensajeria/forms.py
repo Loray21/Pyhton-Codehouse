@@ -6,5 +6,8 @@ from AppEcommerce.models import *
 
 class CreateMessageForm(forms.Form):
     message = forms.CharField()
-    fecha_envio = forms.DateField()
-    ##fields = ['message', 'fecha_envio']
+    users = forms.ModelChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.Select)
+
+    # fields = ['message', 'fecha_envio']

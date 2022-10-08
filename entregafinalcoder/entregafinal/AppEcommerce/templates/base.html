@@ -17,6 +17,7 @@
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    {% block header %} {% endblock header %}
 </head>
 
 <body>
@@ -27,12 +28,14 @@
     <!-- Bootstrap core JS-->
 
     <!-- Section-->
-    <section class="py-5">
-        <div class="container">
-            {% block contenido_que_cambia %}
-            {% endblock %}
-        </div>
-    </section>
+    <div class="container">
+        <section class="py-5">
+            <div class="container">
+                {% block contenido_que_cambia %}
+                {% endblock %}
+            </div>
+        </section>
+    </div>
 
     <!-- Footer-->
     {% include 'includes/footer.html' %}
@@ -40,9 +43,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
-
-    <!-- Core theme JS-->
-    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

@@ -1,63 +1,48 @@
-
 from django.shortcuts import render, redirect
-from AppMensajeria.models import *
-from django.views.generic import *
-from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from .models import mensajes
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User as UserModel
+from django.db.models import Q
+from AppEcommerce.views import obtenerAvatar
 
-from AppMensajeria.forms import CreateMessageForm
-from AppMensajeria.models import mensajes
-from AppEcommerce.models import Auto
-from django.contrib.auth.models import User
-
-
-class MensajeCreate(CreateView):
-    model = mensajes
-    success_url = reverse_lazy('auto_detalle')
-    fields = ['mensaje', 'fecha_envio']
-
-
-def listarMensajes(sender, receiver):
-    messages = mensajes.objects.filter(sender=sender, receiver=receiver) | mensajes.objects.filter(
-        sender_id=receiver, receiver_id=sender)
-    return messages
-
-
-def message_view(request, sender, receiver):
-    if not request.user.is_authenticated:
-        return redirect('auto_detalle')
-    if request.method == "GET":
-        return render(request, 'appMensajeria/rendermensajes.html',
-                      {'users': User.objects.exclude(username=request.user.username),
-                       'receiver': User.objects.get(id=receiver),
-                       'messages': mensajes.objects.filter(sender_id=sender, receiver_id=receiver) |
-                       mensajes.objects.filter(sender_id=receiver, receiver_id=sender)})
-
-
-def crearMensaje(request, sender, receiver):
-    userSender = User.objects.get(id=sender)
-    userReceiver = User.objects.get(id=receiver)
-    if (request.method == "POST"):
-        message = mensajes(
-            mensaje=request.POST.get("mensaje"), sender=userSender, receiver=userReceiver, fecha_envio=datetime.datetime.now())
-        message.save()
-
-        return render(request, 'appMensajeria/rendermensajes.html', {"mensajes": listarMensajes(userSender, userReceiver), "receiver": userReceiver, "sender": userSender})
-    else:
-        return render(request, 'appMensajeria/rendermensajes.html', {"mensaje": 'No se pudo enviar el mensaje'})
-
-
-"""def rendermensajes(request, user):
-    return render(request, 'appMensajeria/rendermensajes.html', {"user": user, "mensajes": listarMensajes(request.user, user)})"""
-
-
-class MensajeUpdate(UpdateView):
-    model = mensajes
-    success_url = reverse_lazy('auto_detalle')
-    pass
-
-
-class MensajeDelete(DeleteView):
-    model = mensajes
-    success_url = reverse_lazy('auto_detalle')
-    pass
 # Create your views here.
+
+
+@login_required
+def home(request):
+    # remplaza import
+    User = get_user_model()
+    users = User.objects.all()
+    chats = {}
+    if request.method == 'GET' and 'u' in request.GET:
+        chats = mensajes.objects.filter(Q(sender=request.user.id, receiver=request.GET['u']) | Q(
+            sender=request.GET['u'], receiver=request.user.id))
+        chats = chats.order_by('fecha_envio')
+    context = {
+        "page": "home",
+        "users": users,
+        "chats": chats,
+        "chat_id": int(request.GET['u'] if request.method == 'GET' and 'u' in request.GET else 0),
+        "avatar": obtenerAvatar(request)
+    }
+    """print(request.GET['u'] if request.method ==
+          'GET' and 'u' in request.GET else 0)"""
+    return render(request, "appMensajeria/mensajes.html", context)
+
+
+@login_required
+def send_chat(request):
+    # print("LLEGA")
+    resp = {}
+    if request.method == 'POST':
+        post = request.POST
+        # recupero user receiver y sender
+        u_from = UserModel.objects.get(id=post['user_from'])
+        u_to = UserModel.objects.get(id=post['user_to'])
+        msg = post['mensage']
+        insert = mensajes(
+            sender=u_from, receiver=u_to, mensaje=msg)
+        insert.save()
+    return home(request)

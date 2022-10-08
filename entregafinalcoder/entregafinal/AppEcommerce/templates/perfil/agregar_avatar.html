@@ -3,9 +3,6 @@
 {% load static %}
 
 
-{% block titulo %}
-<h1 class="mb-5">Agregue un auto</h1>
-{% endblock %}
 
 {% block contenido_que_cambia %}
 <div class="h2 text-center">Tokio</div>
@@ -18,7 +15,8 @@
 
         <input type="submit" class="btn btn-primary" value="Guardar">
     </form>
-    <h2>{{mensaje}}</h2>
+
 </div>
+<div class="h5 text-center">{{mensaje}}</div>
 
 {% endblock %}

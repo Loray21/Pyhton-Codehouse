@@ -19,9 +19,6 @@ from AppEcommerce.views import *
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
     ##path("inicio/", inicio),
-    path("FormAuto/", render_form),
-    path("FormColor/", render_color),
-    path("FormMarca/", render_marca),
     path("addColor/", addColor, name="color_crear"),
     path("addMarca/", addMarca, name="marca_crear"),
     path("", listarAutos, name="listarAutos"),

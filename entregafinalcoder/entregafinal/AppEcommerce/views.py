@@ -14,30 +14,16 @@ from AppEcommerce.forms import *
 # a la url que vuelvo
 from django.urls import reverse_lazy
 from AppEcommerce.forms import UserRegisterForm, UserEditForm
-from AppMensajeria.views import crearMensaje
+##from AppMensajeria.views import crearMensaje
 from AppMensajeria.models import mensajes
-from AppMensajeria.views import listarMensajes
+##from AppMensajeria.views import listarMensajes
 
 
-def inicio(request):
-    return render(request, "index.html", {"avatar": obtenerAvatar(request)})
 # Create your views here.
 
 
 def nosotros(request):
-    return render(request, "nosotros/nosotros.html")
-
-
-def render_form(request):
-    return render(request, "formAuto.html")
-
-
-def render_marca(request):
-    return render(request, "formMarca.html")
-
-
-def render_color(request):
-    return render(request, "formColor.html")
+    return render(request, "nosotros/nosotros.html", {"avatar": obtenerAvatar(request)})
 
 
 def addColor(request):
@@ -46,7 +32,7 @@ def addColor(request):
         color = Color(color=color_auto)
         color.save()
 
-    return listarAutos(request)
+    return listarAutos(request, {"avatar": obtenerAvatar(request)})
 
 
 def addMarca(request):
@@ -55,7 +41,7 @@ def addMarca(request):
         marca = Marca(marca=marca_auto)
         marca.save()
 
-    return listarAutos(request)
+    return listarAutos(request, {"avatar": obtenerAvatar(request)})
 
 
 """def addAuto(request):
@@ -129,7 +115,7 @@ def register(request):
             form.save()
             return render(request, "login/login.html", {"mensaje": f"Su usuario {username} se creo correctamente, Ingrese"})
         else:
-            return render(request, "register/register.html", {"formulario": form, "mensaje": form.errors})
+            return render(request, "register/register.html", {"formulario": form})
     else:
         form = UserRegisterForm()
         return render(request, "register/register.html", {"formulario": form})
@@ -148,18 +134,18 @@ def editarPerfil(request):
             usuario.first_name = info["first_name"]
             usuario.last_name = info["last_name"]
             usuario.save()
-            return render(request, "index.html", {"mensaje": "Perfil editado correctamente"})
+            return render(request, "perfil/editar_perfil.html", {"mensaje": "Perfil editado correctamente", "formulario": form, })
         else:
-            return render(request, "perfil/editarPerfil.html", {"formulario": form, "usuario": usuario, "mensaje": "FORMULARIO INVALIDO"})
+            return render(request, "perfil/editar_perfil.html", {"formulario": form, "usuario": usuario, "mensaje": "FORMULARIO INVALIDO", "avatar": obtenerAvatar(request)})
     else:
         form = UserEditForm(instance=usuario)
-    return render(request, "perfil/editar_perfil.html", {"formulario": form, "usuario": usuario})
+    return render(request, "perfil/editar_perfil.html", {"formulario": form, "usuario": usuario, "avatar": obtenerAvatar(request)})
 
 
 def AutoDetalle(request, id):
     auto = Auto.objects.get(id=id)
     print(str(auto))
-    return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto})
+    return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto, "avatar": obtenerAvatar(request)})
 
 
 @login_required
@@ -167,15 +153,17 @@ def agregarAvatar(request):
     if request.method == "POST":
         form = avatarForm(request.POST, request.FILES)
         if (form.is_valid()):
-
+            avatarViejo = avatar.objects.filter(user=request.user)
+            if (len(avatarViejo) > 0):
+                avatarViejo[0].delete()
             avat = avatar(imagen=form.cleaned_data['imagen'], user=request.user,
                           )
 
             avat.save()
-            return render(request, "index.html")
+        return render(request, "perfil/agregar_avatar.html", {"avatarForm": form, "mensaje": "avatar editado correctamente", "avatar": obtenerAvatar(request)})
     else:
         Form = avatarForm()
-        return render(request, "perfil/agregar_avatar.html", {"avatarForm": Form})
+        return render(request, "perfil/agregar_avatar.html", {"avatarForm": Form, "avatar": obtenerAvatar(request)})
         # ........................
 
 
@@ -201,7 +189,7 @@ class AutoCreate(LoginRequiredMixin, CreateView):
     model = Auto
     success_url = reverse_lazy('listarAutos')
     fields = ['nombre', 'precio', 'imagen', 'marca',
-              'color', 'modelo', 'anio', 'km', 'user']
+              'color', 'modelo', 'anio', 'km']
 
 
 class AutoDelete(LoginRequiredMixin, DeleteView):

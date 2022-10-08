@@ -38,7 +38,7 @@ class UserEditForm(UserCreationForm):
         help_texts = {k: "" for k in fields}
 
 
-class autoForm(ModelForm):
+class autoForm(forms.Form):
     class Meta:
         model = Auto
         fields = [
@@ -49,7 +49,7 @@ class autoForm(ModelForm):
             'color',
             'modelo',
             'anio',
-            'km', ]
+            'km']
 
 
 class avatarForm(forms.Form):

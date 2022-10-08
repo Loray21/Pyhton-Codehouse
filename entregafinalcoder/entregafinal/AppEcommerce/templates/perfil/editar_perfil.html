@@ -14,11 +14,14 @@
     <form action="{% url 'editarPerfil' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
         <div class="form-group">
             {{ formulario.as_p }}
+            <div class="form-group">
+                {{ formavatar.as_p }}
+
+            </div>
         </div>
 
         <input type="submit" class="btn btn-primary" value="Guardar">
     </form>
-    <h2>{{mensaje}}</h2>
 </div>
-
+<div class="h5 text-center">{{mensaje}}</div>
 {% endblock %}

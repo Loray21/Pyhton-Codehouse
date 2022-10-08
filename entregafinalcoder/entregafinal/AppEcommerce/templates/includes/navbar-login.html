@@ -21,17 +21,23 @@
                     <ul class="d-flex navbar-nav">
                         {% if not user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+
+
                         {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'render_mensajes' %}"><img
+                                    src="{% static 'assets/chat.png' %}" width="30" height="30"></a></li>
                         <li class="nav-item dropdown">
                             <a class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                 <img src="{{ avatar }}" width="30" height="30" class="rounded-circle">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href=" {% url 'editarPerfil' %}">Edit Profile</a>
+                                <a class="dropdown-item" href=" {% url 'agregarAvatar' %}">Edit Avatar</a>
                                 <a class="dropdown-item" href=" {% url 'logout' %}">Log Out</a>
                             </div>
                         </li>
                         {% endif %}
+
                     </ul>
 
                 </div>
