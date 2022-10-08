@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Agregue una Marca/h1>
+    {% endblock %}
+
+    {% block contenido_que_cambia %}
+    <div class="container px-4 px-lg-5 mt-5">
+        <h5>Agregue una Marca</h5>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+            <form action="{% url 'marca_crear' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="form-group">
+                    <label for="text">{{ form.marca.errors }}</label>
+                    <label for="exampleFormControlFile1">{{form.marca.label}}</label>
+                    <input type="text" class="form-control-file" id="color" name="marca">
+
+
+                </div>
+                <input type="submit" class="btn btn-primary" value="Enviar">
+            </form>
+        </div>
+
+    </div>
+
+    {% endblock %}

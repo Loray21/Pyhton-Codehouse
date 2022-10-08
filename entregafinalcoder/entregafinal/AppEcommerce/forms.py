@@ -1,3 +1,4 @@
+from email.mime import image
 from tkinter import Widget
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -39,6 +40,15 @@ class UserEditForm(UserCreationForm):
 
 
 class autoForm(forms.Form):
+    nombre = forms.CharField(label="nombre")
+    precio = forms.IntegerField(label="precio")
+    imagen = forms.ImageField(label="imagen")
+    marca = forms.CharField(label="marca")
+    color = forms.CharField(label="color")
+    modelo = forms.CharField(label="modelo")
+    anio = forms.IntegerField(label="año")
+    km = forms.FloatField(label="Kilometros")
+
     class Meta:
         model = Auto
         fields = [
@@ -54,3 +64,11 @@ class autoForm(forms.Form):
 
 class avatarForm(forms.Form):
     imagen = forms.ImageField(label="Imagen")
+
+
+class colorForm(forms.Form):
+    color = forms.CharField(label="color")
+
+
+class marcaForm(forms.Form):
+    marca = forms.CharField(label="marca")

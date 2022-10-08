@@ -28,20 +28,28 @@ def nosotros(request):
 
 def addColor(request):
     if request.method == "POST":
-        color_auto = request.POST.get("color")
-        color = Color(color=color_auto)
-        color.save()
-
-    return listarAutos(request, {"avatar": obtenerAvatar(request)})
+        form = colorForm(request.POST)
+        if (form.is_valid):
+            color_auto = request.POST.get("color")
+            color = Color(color=color_auto)
+            color.save()
+        return listarAutos(request)
+    else:
+        form = colorForm
+        return render(request, "color.html", {"avatar": obtenerAvatar(request), "form": form})
 
 
 def addMarca(request):
     if request.method == "POST":
-        marca_auto = request.POST.get("marca")
-        marca = Marca(marca=marca_auto)
-        marca.save()
-
-    return listarAutos(request, {"avatar": obtenerAvatar(request)})
+        form = marcaForm(request.POST)
+        if (form.is_valid):
+            marca_auto = request.POST.get("marca")
+            marca = Marca(marca=marca_auto)
+            marca.save()
+        return listarAutos(request)
+    else:
+        form = marcaForm
+        return render(request, "marca.html", {"avatar": obtenerAvatar(request), "form": form})
 
 
 """def addAuto(request):
@@ -180,18 +188,38 @@ def obtenerAvatar(request):
 
 class AutoUpdate(LoginRequiredMixin, UpdateView):
     model = Auto
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['avatar'] = obtenerAvatar(self.request)
+        context['accion'] = "Editar Auto"
+        return context
     success_url = reverse_lazy('listarAutos')
+
     fields = ['nombre', 'precio', 'imagen', 'marca',
               'color', 'modelo', 'anio', 'km']
 
 
 class AutoCreate(LoginRequiredMixin, CreateView):
     model = Auto
+    form_class: autoForm
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['avatar'] = obtenerAvatar(self.request)
+        context['accion'] = "Agregar Auto"
+        return context
     success_url = reverse_lazy('listarAutos')
+
     fields = ['nombre', 'precio', 'imagen', 'marca',
               'color', 'modelo', 'anio', 'km']
 
 
 class AutoDelete(LoginRequiredMixin, DeleteView):
     model = Auto
+
     success_url = reverse_lazy('listarAutos')

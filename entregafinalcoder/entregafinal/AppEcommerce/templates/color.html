@@ -11,17 +11,17 @@
 <div class="container px-4 px-lg-5 mt-5">
     <h5>Agregue un Color</h5>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
-        <form action="{% url 'addColor' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <form action="{% url 'color_crear' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
             <div class="form-group">
-                <label for="exampleFormControlFile1">Color</label>
+                <label for="text">{{ form.color.errors }}</label>
+                <label for="">{{form.color.label}}</label>
                 <input type="text" class="form-control-file" id="color" name="color">
-
 
             </div>
 
+            <input type="submit" class="btn btn-primary" value="Enviar">
+        </form>
     </div>
-    <input type="submit" value="Enviar">
-
 </div>
 
 {% endblock %}

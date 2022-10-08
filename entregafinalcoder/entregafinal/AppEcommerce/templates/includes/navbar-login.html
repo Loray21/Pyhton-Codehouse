@@ -15,7 +15,16 @@
                                 href="{% url 'listarAutos' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href=" {% url 'nosotros' %}">Nosotros</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href=" {% url 'auto_crear' %}">Agregar Auto</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Autos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href=" {% url 'auto_crear' %}">Nuevo Auto</a>
+                                <a class="dropdown-item" href=" {% url 'marca_crear' %}">Nueva Marca</a>
+                                <a class="dropdown-item" href=" {% url 'color_crear' %}">Nuevo Color</a>
+                            </div>
+                        </li>
                         {% endif %}
                     </ul>
                     <ul class="d-flex navbar-nav">
