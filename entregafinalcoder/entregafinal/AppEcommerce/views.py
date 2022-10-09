@@ -15,7 +15,6 @@ from AppEcommerce.forms import *
 from django.urls import reverse_lazy
 from AppEcommerce.forms import UserRegisterForm, UserEditForm
 ##from AppMensajeria.views import crearMensaje
-from AppMensajeria.models import mensajes
 ##from AppMensajeria.views import listarMensajes
 
 

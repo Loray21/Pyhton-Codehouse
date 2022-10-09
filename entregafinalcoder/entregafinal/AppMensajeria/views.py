@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import mensajes
+from .models import chat
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User as UserModel
 from django.db.models import Q
@@ -17,7 +17,7 @@ def home(request):
     users = User.objects.all()
     chats = {}
     if request.method == 'GET' and 'u' in request.GET:
-        chats = mensajes.objects.filter(Q(sender=request.user.id, receiver=request.GET['u']) | Q(
+        chats = chat.objects.filter(Q(sender=request.user.id, receiver=request.GET['u']) | Q(
             sender=request.GET['u'], receiver=request.user.id))
         chats = chats.order_by('fecha_envio')
     context = {
@@ -42,7 +42,7 @@ def send_chat(request):
         u_from = UserModel.objects.get(id=post['user_from'])
         u_to = UserModel.objects.get(id=post['user_to'])
         msg = post['mensage']
-        insert = mensajes(
+        insert = chat(
             sender=u_from, receiver=u_to, mensaje=msg)
         insert.save()
     return home(request)

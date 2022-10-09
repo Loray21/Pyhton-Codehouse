@@ -4,35 +4,48 @@
 
 {% block contenido_que_cambia %}
 <div class="row">
-    <div class="col-8 ">
+    <div class="col-8 py-5">
         <img src="{{auto.imagen.url}}" class="img-fluid" alt="Responsive image">
     </div>
-    <div class="col-4 border rounded">
-        <h2>{{auto.nombre}} • {{auto.modelo}} • {{auto.anio}}</h2>
-        <h3><span>$</span>{{auto.precio}}</h3>
+    <div class="col-4 borderrounded py-5">
+        <h4 class="text-black ">{{auto.nombre}} • {{auto.modelo}} • {{auto.anio}}</h4>
+        <h5 class="text-primary fw-bold"><span>$</span>{{auto.precio}}</h5>
     </div>
 </div>
-<div class="h3 text-center">Caracteristicas</div>
-<div class="col-auto">
-    <table class="table table-responsive">
-        <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="py-5 h3 text-center fw-bold">Caracteristicas</div>
+<div class="row">
+    <div class="col-6">
+        <table class="table table-responsive ">
+            <tbody>
+                <tr>
+                    <td class="text-primary fw-bold">Color</td>
+                    <td>{{auto.color}}</td>
+                </tr>
+                <tr>
+                    <td class="text-primary fw-bold">Modelo</td>
+                    <td>{{auto.modelo}}</td>
+                </tr>
+                <tr>
+                    <td class="text-primary fw-bold">km</td>
+                    <td>{{auto.km}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table table-responsive">
+            <tbody>
+                <tr>
+                    <td class="text-primary fw-bold">Año</td>
+                    <td>{{auto.anio}}</td>
+                </tr>
+                <tr>
+                    <td class="text-primary fw-bold">Marca</td>
+                    <td>{{auto.modelo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 
