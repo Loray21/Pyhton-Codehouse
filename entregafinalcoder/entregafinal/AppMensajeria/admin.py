@@ -4,4 +4,4 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(mensajes_chat)
+admin.site.register(chat)

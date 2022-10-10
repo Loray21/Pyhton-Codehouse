@@ -7,6 +7,10 @@
     position: relative;
 }
 
+#register {
+    margin-top: 10px;
+}
+
 .wrap {
     min-height: 100%;
     position: relative;
