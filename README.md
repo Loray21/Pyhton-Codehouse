@@ -62,7 +62,7 @@ Git
 
 **Mensajeria:**
 
-> Se implemento una App de mensajes ,en la cual cualquier persona que se encuentre registrado en la pagina puede enviarle un mensaje a cualquier usuario que tambien se encuentren registrado.
+> Se implemento una App de mensajes ,en la cual cualquier persona que se encuentre registrado en la paginal puede envier un mensaje a todos los usuarios que tambien se encuentren registrados.
 > 
 > Para utilizar la app dirijase al icono de mensajes que se encuentra en la barra de navegacion y comienze a enviar mensajes a los demas miembros.
 
@@ -80,6 +80,10 @@ Autos existentes: Clio Mio 2011 Ford Raptor 2016
 Filtro de busqueda: Clio pack
 
 *   [x] Resultado: No se muestran Autos 
+
+### **Modelo Base de Datos** 
+
+![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/images/f4a9d4acd72413eaa894cf63926d35359945aa13f18257c1.png)
 
 ### **Construido con 🛠️**
 
