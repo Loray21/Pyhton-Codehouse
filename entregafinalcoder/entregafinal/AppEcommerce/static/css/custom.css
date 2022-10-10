@@ -1,7 +1,41 @@
-#footer {
-    position: absolute !important;
+.foot-tomi {
     bottom: 0 !important;
     width: 100% !important;
     height: 205px !important;
     color: #000 !important;
+    background-color: #000;
+    position: relative;
+}
+
+.wrap {
+    min-height: 100%;
+    position: relative;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#user-list a.bg-dark {
+    background-color: rgb(107, 107, 107) !important;
+}
+
+.list-group-item {
+    cursor: pointer
+}
+
+.chat-bubble {
+    min-width: 40%;
+    max-width: 80%;
+    padding: 5px 15px;
+}
+
+#user-list a:hover * {
+    text-decoration: unset;
+}
+
+.chat-box {
+    overflow: auto;
+    max-width: 100%;
 }

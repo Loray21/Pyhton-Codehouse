@@ -1,28 +1,4 @@
 {% extends 'base.html' %} {% load static %} {% block header %}
-<style>
-    #user-list a.bg-dark {
-        background-color: rgb(107, 107, 107) !important;
-    }
-
-    .list-group-item {
-        cursor: pointer
-    }
-
-    .chat-bubble {
-        min-width: 40%;
-        max-width: 80%;
-        padding: 5px 15px;
-    }
-
-    #user-list a:hover * {
-        text-decoration: unset;
-    }
-
-    .chat-box {
-        overflow: auto;
-        max-width: 100%;
-    }
-</style>
 {% endblock %} {% block contenido_que_cambia %}
 <div class="container py-5" style="height: 75%;">
     <div class="card bg-dark h-100 border-light">
@@ -49,13 +25,15 @@
                     {% else%}
                     <div id="chat-box-field" class="h-100">
                         <div class="chat-box" style="height:80%">
-                            {% for chat in chats %} {% if chat.sender == user %}
+                            {% for chat in chats %}
+                            {% if chat.sender == user %}
                             <div class="p-2 w-100 d-flex justify-content-end">
                                 <div class=" chat-bubble  ml-2 mb-2 bg-primary text-light rounded"
                                     data-id="{{chat.id}}">
                                     <p>{{chat.mensaje}}</p>
-                                    <div class="d-flex justify-content-between"><small>You</small>
-                                        <small>{{chat.fecha_envio|date:"M-d-Y"}}</small>
+                                    <div class="d-flex justify-content-between">
+                                        <small>You</small>
+                                        <small>{{chat.fecha_envio|date:"M-d-Y : H"}}</small>
                                     </div>
                                 </div>
                             </div>

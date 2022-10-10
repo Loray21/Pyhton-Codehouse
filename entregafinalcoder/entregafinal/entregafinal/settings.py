@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!$o8d+6jwc4)+$oisgs(^wvz*twejdv01g53)(cm^n&bldql6='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'entregafinal.urls'
@@ -134,3 +135,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = reverse_lazy('listarAutos')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

@@ -14,8 +14,8 @@ from AppEcommerce.forms import *
 # a la url que vuelvo
 from django.urls import reverse_lazy
 from AppEcommerce.forms import UserRegisterForm, UserEditForm
-##from AppMensajeria.views import crearMensaje
-##from AppMensajeria.views import listarMensajes
+# from AppMensajeria.views import crearMensaje
+# from AppMensajeria.views import listarMensajes
 
 
 # Create your views here.
@@ -84,7 +84,7 @@ def buscarNombre(request):
         if len(autos) > 0:
             return render(request, "index.html", {"autos": autos})
         else:
-            return render(request, "home/notfound.html")
+            return render(request, "home/notfound.html", {"avatar": obtenerAvatar(request)})
 
     else:
         return listarAutos(request)
@@ -155,7 +155,7 @@ def AutoDetalle(request, id):
     return render(request, "AppEcommerce/auto_detalle.html", {"auto": auto, "avatar": obtenerAvatar(request)})
 
 
-@login_required
+@ login_required
 def agregarAvatar(request):
     if request.method == "POST":
         form = avatarForm(request.POST, request.FILES)
@@ -174,7 +174,7 @@ def agregarAvatar(request):
         # ........................
 
 
-@login_required
+@ login_required
 def obtenerAvatar(request):
     avat = avatar.objects.filter(user=request.user)
     if (len(avat) != 0):
@@ -203,7 +203,7 @@ class AutoUpdate(LoginRequiredMixin, UpdateView):
 
 class AutoCreate(LoginRequiredMixin, CreateView):
     model = Auto
-    form_class: autoForm
+    success_url = reverse_lazy('listarAutos')
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -212,7 +212,10 @@ class AutoCreate(LoginRequiredMixin, CreateView):
         context['avatar'] = obtenerAvatar(self.request)
         context['accion'] = "Agregar Auto"
         return context
-    success_url = reverse_lazy('listarAutos')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
     fields = ['nombre', 'precio', 'imagen', 'marca',
               'color', 'modelo', 'anio', 'km']
