@@ -1,19 +1,16 @@
-**TUAUTOYA**
+## **TOKIO**
 
+**TOKIO** es un BLOG de venta de autos donde la gente puede publicar su vehiculo en venta con un costo muy accesible.
 
-**TUAUTOYA** es una pagina Ecommerce de venta de autos, con el fin de ademas de poder vender en un lugar fisico , se implementen las ventas online
-Comenzando 🚀
-Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
+Comenzando 🚀 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
 
 Desde su maquina local clone el repositorio del proyecto con el siguiente comando
 
-
--git clone https://github.com/Loray21/Pyhton-Codehouse.git
-
+\-git clone [https://github.com/Loray21/Pyhton-Codehouse.git](https://github.com/Loray21/Pyhton-Codehouse.git)
 
 Pre-requisitos 📋
 
-```
+```plaintext
 Python
 
 Django
@@ -22,74 +19,71 @@ Pip
 
 Git
 ```
-Funcionalidad
 
+### **Funcionalidad:**
 
-Pagina principal:
+**Pagina principal:**
 
+> Encontrara un listado de todos los autos en venta.
 
-Encontrara un listado de todos los autos en venta.
+**Registrar:**
 
-Añadir Auto a la venta:
+>  Dirajase a la pantalla login y luego a sign up para registrarse y poder empezar a agregar sus vehiculos. 
 
+**Login:**
 
-Dirijase al endpoint /FormAuto/ para agregar un auto
+>  Dirajase a la pantalla login y complete sus datos 
 
+**Añadir Auto:**
 
-Rellene los campos con los valores solicitados
+> Dirijase al Menu Autos y presione Nuevo Auto.
+> 
+> Rellene los campos con los valores solicitados
+> 
+> Finalmente se retonara a la pagina principal donde podra ver su Auto recientemente agregado
 
+**Añadir Color:**
 
-Finalmente se retonara a la pagina principal donde podra ver su Auto recientemente agregado
+> Dirijase al Menu Autos y presione Nuevo Color.
+> 
+> Rellene los campos con los valores solicitados
 
+**Añadir Marca:**
 
-Añadir Color de auto:
+> Dirijase al Menu Autos y presione nueva marca.
+> 
+> Rellene los campos con los valores solicitados
 
+**Buscar auto por nombre:**
 
-Dirijase al endpoint /FormColor/ para agregar un color nuevo
+> En la pagina principal se encuentra una entrada de texto donde debe colocar el auto que desea buscar y suprimir el boton buscar, donde filtrara por el mismo.
+> 
+> Si no se encuentra ningun auto, sera notificado
 
+**Mensajeria:**
 
-Añadir Marca de auto:
+> Se implemento una App de mensajes ,en la cual cualquier persona que se encuentre registrado en la paginal puede envier un mensaje a todos los usuarios que tambien se encuentren registrados.
+> 
+> Para utilizar la app dirijase al icono de mensajes que se encuentra en la barra de navegacion y comienze a enviar mensajes a los demas miembros.
 
+### **Ejecutando las pruebas ⚙️**
 
+_Analice las pruebas end-to-end 🔩_
 
-Dirijase al endpoint /FormMarca/ para agregar una marca nueva
+1.   Agregue un automovil y verifique que realmente aparezca en la pagina principal
+2.  Busque por un nombre de automovil que desea y verifique si el resultado es congruente con los que existen
 
+_Ejemplo_:
 
-Buscar auto por nombre:
+Autos existentes: Clio Mio 2011 Ford Raptor 2016
 
-En la pagina principal se encuentra una entrada de texto donde debe colocar el auto que desea buscar
-y suprimir el boton buscar, donde filtrara por el mismo
+Filtro de busqueda: Clio pack
 
+*   [x] Resultado: No se muestran Autos 
 
+### **Construido con 🛠️**
 
-
-
-Ejecutando las pruebas ⚙️
-
-Analice las pruebas end-to-end 🔩
-
-
-1- Agregue un automovil y verifique que realmente aparezca en la pagina principal
-
-
-
-2_Busque por un nombre de automovil que desea y verifique si el resultado es congruente con los que existen
-
-Ejemplo:
-
-Autos existentes:
-Clio Mio 2011 
-Ford Raptor 2016
-
-Filtro de busqueda:
-Clio pack 
-
-Resultado:
-No se muestran Autos
-
-
-Construido con 🛠️
-```
+```plaintext
 Python
 Html
 Boostrap
@@ -98,16 +92,20 @@ Css
 Js
 ```
 
-Patron Utilizado:
-```
+### **Patron Utilizado:**
+
+```plaintext
 MVT(Model-View-Template)
 ```
-Versionado 📌
-```
+
+### **Versionado 📌**
+
+```plaintext
 Se Utilizo Git para el versionado del codigo
 ```
-Autores ✒️
 
+### **Autores ✒️**
 
+```plaintext
 Tomas Loray- Desarrollo Full Stack
-
+```
