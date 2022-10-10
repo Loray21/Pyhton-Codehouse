@@ -62,7 +62,7 @@ Git
 
 **Mensajeria:**
 
-> Se implemento una App de mensajes ,en la cual cualquier persona que se encuentre registrado en la paginal puede envier un mensaje a todos los usuarios que tambien se encuentren registrados.
+> Se implemento una App de mensajes ,en la cual cualquier persona que se encuentre registrado en la pagina puede enviarle un mensaje a cualquier usuario que tambien se encuentren registrado.
 > 
 > Para utilizar la app dirijase al icono de mensajes que se encuentra en la barra de navegacion y comienze a enviar mensajes a los demas miembros.
 
