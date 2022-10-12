@@ -218,7 +218,7 @@ class AutoCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     fields = ['nombre', 'precio', 'imagen', 'marca',
-              'color', 'modelo', 'anio', 'km']
+              'color', 'modelo', 'anio', 'km', 'descripcion']
 
 
 class AutoDelete(LoginRequiredMixin, DeleteView):

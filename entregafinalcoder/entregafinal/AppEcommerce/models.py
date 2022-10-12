@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -28,6 +29,7 @@ class Auto(models.Model):
     anio = models.IntegerField()
     km = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    descripcion = models.TextField(default="")
 
     def __str__(self) -> str:
         return self.nombre + " " + self.modelo + " " + str(self.anio)
