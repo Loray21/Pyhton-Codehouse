@@ -1,1 +1,0 @@
-web : gunicorn entregafinal.wsgi --log-file -

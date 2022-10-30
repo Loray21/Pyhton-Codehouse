@@ -10,6 +10,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from AppEcommerce.forms import *
+from rest_framework.generics import ListAPIView,CreateAPIView
+from .serializers import AutoSerializers
 
 # a la url que vuelvo
 from django.urls import reverse_lazy
@@ -225,3 +227,16 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
     model = Auto
 
     success_url = reverse_lazy('listarAutos')
+
+
+class AutoViewApiList(ListAPIView):
+    serializer_class=AutoSerializers
+    def get_queryset(self):
+        return Auto.objects.all()
+    
+
+
+class AutoViewApiCreate(CreateAPIView):
+    serializer_class=AutoSerializers
+
+    

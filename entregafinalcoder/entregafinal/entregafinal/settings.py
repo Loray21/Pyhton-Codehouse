@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "AppEcommerce",
-    "AppMensajeria"
+    "AppMensajeria",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [

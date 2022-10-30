@@ -40,7 +40,13 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('logout/', LogoutView.as_view(template_name='login/login.html'), name='logout'),
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
-    path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
+    path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
+
+
+# rest
+
+    path('api/Autos',AutoViewApiList.as_view(),name="Autos"),
+    path('api/Autos/create',AutoViewApiCreate.as_view(),name="AutosCreate")
 
 
 
