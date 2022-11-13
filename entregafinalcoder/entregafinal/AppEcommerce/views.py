@@ -10,7 +10,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from AppEcommerce.forms import *
-from rest_framework.generics import ListAPIView,CreateAPIView
+from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,DestroyAPIView,UpdateAPIView,RetrieveUpdateAPIView
 from .serializers import AutoSerializers
 
 # a la url que vuelvo
@@ -238,5 +238,29 @@ class AutoViewApiList(ListAPIView):
 
 class AutoViewApiCreate(CreateAPIView):
     serializer_class=AutoSerializers
+
+
+class AutoRetrieveApiView(RetrieveAPIView):
+    serializer_class=AutoSerializers
+    ##buscame todo
+    queryset=Auto.objects.all()
+
+
+class AutoDeleteApiView(DestroyAPIView):
+    serializer_class=AutoSerializers
+    ##buscame todo
+    queryset=Auto.objects.all()
+
+class AutoUpdateApiView(UpdateAPIView):
+    serializer_class=AutoSerializers
+    queryset=Auto.objects.all()
+
+
+class AutoRetrieveUpdateApiView(RetrieveUpdateAPIView):
+    serializer_class=AutoSerializers
+    queryset=Auto.objects.all()
+
+
+
 
     

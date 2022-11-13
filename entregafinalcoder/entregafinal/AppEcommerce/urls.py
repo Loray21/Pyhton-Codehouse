@@ -46,7 +46,12 @@ urlpatterns = [
 # rest
 
     path('api/Autos',AutoViewApiList.as_view(),name="Autos"),
-    path('api/Autos/create',AutoViewApiCreate.as_view(),name="AutosCreate")
+    path('api/Autos/create',AutoViewApiCreate.as_view(),name="AutosCreate"),
+    path('api/Autos/Detail/<pk>/',AutoRetrieveApiView.as_view(),name="AutoDetail"),
+    path('api/Autos/Delete/<pk>/',AutoDeleteApiView.as_view(),name="AutoDelete"),
+    path('api/Autos/Update/<pk>/',AutoUpdateApiView.as_view(),name="AutoUpdate")
+
+
 
 
 
